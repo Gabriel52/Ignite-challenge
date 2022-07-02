@@ -1,1 +1,55 @@
 // TODO
+.containerStyled {
+  height: 100vh;
+  background-color: #1A1D23;
+
+  section{
+    cursor: pointer;
+  }
+
+  section:not(:last-child){
+    margin-bottom: 48px;
+  }
+  div:first-child{
+    max-width: 1120px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  h1{
+    font-weight: 700;
+    font-size: 28px;
+    color: var(--gray-300);
+  }
+  p {
+    margin-top: 8px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    color: var(--gray-300);
+  }
+}
+
+.contentFooterStyled {
+  margin-top: 24px;
+  color: var(--gray-300);
+  display: grid;
+  grid-template-columns: 158px 200px;
+  gap: 24px;
+  time{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    margin-left: 8px;
+  }
+
+  cite {
+
+    display: inline-block;
+    width: 88%;
+
+    margin-left: 8px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}

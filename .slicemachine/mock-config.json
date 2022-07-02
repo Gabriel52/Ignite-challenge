@@ -1,0 +1,14 @@
+{
+  "_cts": {
+    "publication-custom-type": {
+      "content": {
+        "body": {
+          "config": {
+            "patternType": "PARAGRAPH",
+            "blocks": 1
+          }
+        }
+      }
+    }
+  }
+}

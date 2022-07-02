@@ -1,0 +1,51 @@
+{
+  "id": "ba436790-6512-43b2-a531-9e3792fa98bb",
+  "uid": "ipsum-reiciendis-architecto",
+  "type": "publication-custom-type",
+  "data": {
+    "title": "redefine seamless applications",
+    "subtitle": "cultivate plug-and-play functionalities",
+    "author": "redefine customized portals",
+    "banner": {
+      "dimensions": {
+        "width": 900,
+        "height": 500
+      },
+      "alt": "Placeholder image",
+      "copyright": null,
+      "url": "https://images.unsplash.com/photo-1589321578146-4c1ba445cc88?w=900&h=500&fit=crop"
+    },
+    "content": [
+      {
+        "heading": "disintermediate B2B e-commerce",
+        "body": [
+          {
+            "type": "paragraph",
+            "text": "Culpa laborum aliquip incididunt elit labore pariatur cupidatat.",
+            "spans": []
+          }
+        ]
+      },
+      {
+        "heading": "orchestrate strategic initiatives",
+        "body": [
+          {
+            "type": "paragraph",
+            "text": "Culpa ea reprehenderit et aute sint Lorem mollit eu exercitation proident. Anim ipsum veniam non ullamco mollit voluptate fugiat. Pariatur eiusmod officia nisi nisi.",
+            "spans": []
+          }
+        ]
+      },
+      {
+        "heading": "synergize interactive applications",
+        "body": [
+          {
+            "type": "paragraph",
+            "text": "Dolor mollit ad veniam anim aute ut irure ad ipsum nostrud eiusmod. Id dolor ex eiusmod minim et deserunt. Pariatur nisi irure quis laboris ipsum ex exercitation minim labore irure consequat labore.",
+            "spans": []
+          }
+        ]
+      }
+    ]
+  }
+}
