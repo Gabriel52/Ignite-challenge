@@ -1,12 +1,15 @@
 import { GetStaticProps } from 'next';
 import { BiCalendarMinus, BiUser } from 'react-icons/bi';
 import Link from 'next/link';
+import Prismic from '@prismicio/client';
 
+import { useEffect } from 'react';
 import { LANGUAGE, TIME_FOR_REVALIDATE } from '../contants';
 import { getPrismicClient } from '../services/prismic';
 import styles from './home.module.scss';
+import { useHome } from './useHome';
 
-interface Post {
+export interface Post {
   uid?: string;
   first_publication_date: string | null;
   data: {
@@ -21,18 +24,36 @@ interface PostPagination {
   results: Post[];
 }
 
-interface HomeProps {
-  postsPagination: PostPagination;
-}
-
 export default function Home({
   results,
   next_page,
 }: PostPagination): JSX.Element {
+  const {
+    posts,
+    setPosts,
+    nextPage,
+    setNextPage,
+    handlePaginationPosts,
+  } = useHome();
+
+  useEffect(() => {
+    /**
+     * @function
+     * @name initialValue
+     * @description
+     * Responsible for setting the initial value of the posts state.
+     */
+    const initialValue = (): void => {
+      setPosts(results);
+      setNextPage(next_page);
+    };
+    initialValue();
+  }, [next_page, results, setNextPage, setPosts]);
+
   return (
     <div className={styles.containerStyled}>
       <div>
-        {results.map(item => (
+        {posts.map(item => (
           <section key={item.uid}>
             <Link href={`/post/${item.uid}`}>
               <a>
@@ -56,6 +77,15 @@ export default function Home({
             </Link>
           </section>
         ))}
+        {nextPage && (
+          <button
+            type="button"
+            onClick={handlePaginationPosts}
+            className={styles.loadMoreButton}
+          >
+            Carregar mais posts
+          </button>
+        )}
       </div>
     </div>
   );
@@ -63,9 +93,14 @@ export default function Home({
 
 export const getStaticProps: GetStaticProps = async () => {
   const prismic = getPrismicClient({});
-  const postsResponse = await prismic.getAllByType('publication-custom-type');
+  const { results, next_page } = await prismic.getByType(
+    'publication-custom-type',
+    {
+      pageSize: 10,
+    }
+  );
 
-  const results: Post[] = await postsResponse.map(post => {
+  const response: Post[] = await results.map(post => {
     return {
       uid: post.uid,
       data: {
@@ -84,9 +119,9 @@ export const getStaticProps: GetStaticProps = async () => {
   });
   return {
     props: {
-      results,
+      results: response,
+      next_page,
     },
     revalidate: TIME_FOR_REVALIDATE,
   };
-  // TODO
 };
