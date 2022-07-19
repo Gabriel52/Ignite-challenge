@@ -1,13 +1,13 @@
 import { GetStaticProps } from 'next';
 import { BiCalendarMinus, BiUser } from 'react-icons/bi';
 import Link from 'next/link';
-import Prismic from '@prismicio/client';
 
 import { useEffect } from 'react';
-import { LANGUAGE, TIME_FOR_REVALIDATE } from '../contants';
+import { TIME_FOR_REVALIDATE } from '../contants';
 import { getPrismicClient } from '../services/prismic';
 import styles from './home.module.scss';
 import { useHome } from './useHome';
+import { convertingDate } from '../utils/convertingDate';
 
 export interface Post {
   uid?: string;
@@ -108,13 +108,7 @@ export const getStaticProps: GetStaticProps = async () => {
         author: post.data.author.toString() as string,
         subtitle: post.data.subtitle.toString() as string,
       },
-      first_publication_date: new Date(
-        post.last_publication_date
-      ).toLocaleDateString(LANGUAGE, {
-        day: '2-digit',
-        month: 'long',
-        year: 'numeric',
-      }),
+      first_publication_date: convertingDate(post.first_publication_date),
     };
   });
   return {

@@ -1,3 +1,3 @@
-import { LANGUAGE, TIME_FOR_REVALIDATE } from './constants';
+import { LANGUAGE, TIME_FOR_REVALIDATE, CLIENT_ID } from './constants';
 
-export { LANGUAGE, TIME_FOR_REVALIDATE };
+export { LANGUAGE, TIME_FOR_REVALIDATE, CLIENT_ID };

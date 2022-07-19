@@ -1,5 +1,44 @@
 .containerStyled {
-  max-width: 1120px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.contentBannerStyled {
+  img{
+    width: 100%;
+    max-height: 75vh;
+  }
+}
+
+.contentStyled {
+  margin-top: 80px;
+  :first-child {
+    max-width: 1120px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  h1 {
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 58px;
+
+    letter-spacing: -0.5px;
+
+    color: var(--gray-300);
+  }
+}
+.headerInformation {
+  margin-top: 24px;
+  display: inline-flex;
+  gap: 20px;
+  color: var(--gray-300);
+}
+
+
+.itemsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
