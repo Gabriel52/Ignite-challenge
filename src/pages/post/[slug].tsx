@@ -1,4 +1,6 @@
 import { GetServerSideProps } from 'next';
+import { RichText } from 'prismic-dom';
+import { v4 } from 'uuid';
 import { BiCalendarMinus, BiUser } from 'react-icons/bi';
 import { FiClock } from 'react-icons/fi';
 
@@ -31,6 +33,7 @@ interface PostProps {
 
 export default function Post({ post }: PostProps): JSX.Element {
   console.log(post);
+
   return (
     <section className={styles.containerStyled}>
       <div className={styles.contentBannerStyled}>
@@ -58,6 +61,16 @@ export default function Post({ post }: PostProps): JSX.Element {
               </span>
               <time>{post.first_publication_date}</time>
             </div>
+          </div>
+          <div className={styles.contentText}>
+            {post.data.content.map(content => (
+              <div key={content.heading}>
+                <h1>{content.heading}</h1>
+                {content.body.map(({ text }, i) => (
+                  <div key={v4()} dangerouslySetInnerHTML={{ __html: text }} />
+                ))}
+              </div>
+            ))}
           </div>
         </div>
       </div>
