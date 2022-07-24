@@ -4,11 +4,12 @@ import { v4 } from 'uuid';
 import { BiCalendarMinus, BiUser } from 'react-icons/bi';
 import { FiClock } from 'react-icons/fi';
 
-import { CLIENT_ID } from '../../contants';
+import { CLIENT_ID, WORDS_FOR_MINUTE } from '../../contants';
 import { getPrismicClient } from '../../services/prismic';
 import { convertingDate } from '../../utils/convertingDate';
 
 import styles from './post.module.scss';
+import { estimatedTimeRead } from '../../utils/estimatedTimeRead';
 
 interface Post {
   first_publication_date: string | null;
@@ -29,9 +30,10 @@ interface Post {
 
 interface PostProps {
   post: Post;
+  readTime: number;
 }
 
-export default function Post({ post }: PostProps): JSX.Element {
+export default function Post({ post, readTime }: PostProps): JSX.Element {
   console.log(post);
 
   return (
@@ -59,14 +61,14 @@ export default function Post({ post }: PostProps): JSX.Element {
               <span>
                 <FiClock />
               </span>
-              <time>{post.first_publication_date}</time>
+              <time>{readTime} min</time>
             </div>
           </div>
           <div className={styles.contentText}>
             {post.data.content.map(content => (
               <div key={content.heading}>
                 <h1>{content.heading}</h1>
-                {content.body.map(({ text }, i) => (
+                {content.body.map(({ text }) => (
                   <div key={v4()} dangerouslySetInnerHTML={{ __html: text }} />
                 ))}
               </div>
@@ -93,7 +95,18 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       content: document.data.content,
     },
   };
+  const VALUE_INITIAL = 0;
+
+  const readTime = response.data?.content.reduce((acc, content) => {
+    const headingTime = estimatedTimeRead(
+      acc + content.heading.length / WORDS_FOR_MINUTE
+    );
+    const bodyTime = content.body.reduce((accBody, contentBody) => {
+      return accBody + contentBody.text.length / WORDS_FOR_MINUTE;
+    }, VALUE_INITIAL);
+    return Math.round(headingTime + bodyTime);
+  }, VALUE_INITIAL);
   return {
-    props: { post: response },
+    props: { post: response, readTime },
   };
 };
