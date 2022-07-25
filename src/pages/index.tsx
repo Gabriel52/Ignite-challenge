@@ -96,7 +96,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const { results, next_page } = await prismic.getByType(
     'publication-custom-type',
     {
-      pageSize: 1,
+      pageSize: 10,
     }
   );
 

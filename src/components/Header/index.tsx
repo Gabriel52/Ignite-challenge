@@ -11,7 +11,7 @@ export const Header = (): JSX.Element => {
       <div className={styled.contentStyled}>
         <Link href="/">
           <a>
-            <img src="/assets/logo.png" alt="Logo" />
+            <img src="/assets/logo.png" alt="logo" />
           </a>
         </Link>
       </div>
