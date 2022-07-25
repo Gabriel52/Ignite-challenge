@@ -19,7 +19,7 @@ export interface Post {
   };
 }
 
-interface PostPagination {
+export interface PostPagination {
   next_page: string;
   results: Post[];
 }
@@ -96,7 +96,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const { results, next_page } = await prismic.getByType(
     'publication-custom-type',
     {
-      pageSize: 10,
+      pageSize: 1,
     }
   );
 

@@ -1,20 +1,17 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Post } from '.';
-import { getPrismicClient } from '../services/prismic';
 import { convertPostsHome } from '../utils/convertPostsHome';
 
 type ReturnHomeType = {
   posts: Post[];
   setPosts: Dispatch<SetStateAction<Post[]>>;
-  nextPage: string;
   setNextPage: Dispatch<SetStateAction<string>>;
-  handlePaginationPosts: () => Promise<Post[]>;
+  handlePaginationPosts: () => Promise<void>;
+  nextPage: string;
 };
-const INITIAL_VALUE_PAGINATION = 20;
 export const useHome = (): ReturnHomeType => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [nextPage, setNextPage] = useState('');
-  const [numberPage, setNumberPage] = useState(INITIAL_VALUE_PAGINATION);
 
   /**
    * @function
@@ -22,24 +19,19 @@ export const useHome = (): ReturnHomeType => {
    * @description
    * Responsible for searching for the next pages of posts.
    */
-  const handlePaginationPosts = async (): Promise<Post[]> => {
-    const prismic = getPrismicClient({});
-    setNumberPage(numberPage + 10);
-    const primicParams = {
-      pageSize: numberPage,
-    };
-    const { results } = await prismic.getByType('publication-custom-type', {
-      ...primicParams,
-      after: nextPage,
-    });
-    const response = convertPostsHome({ results });
-    return response;
+  const handlePaginationPosts = async (): Promise<void> => {
+    const response = await fetch(nextPage);
+    const data = await response.json();
+    console.log(data);
+    const restPost = convertPostsHome({ results: data.results });
+    setPosts([...posts, ...restPost]);
+    setNextPage(data.next_page);
   };
 
   return {
     posts,
-    setPosts,
     nextPage,
+    setPosts,
     setNextPage,
     handlePaginationPosts,
   };

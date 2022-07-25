@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styled from './header.module.scss';
 /**
  * @export
@@ -8,7 +9,11 @@ export const Header = (): JSX.Element => {
   return (
     <header className={styled.headerStyled}>
       <div className={styled.contentStyled}>
-        <img src="/assets/logo.png" alt="Logo" />
+        <Link href="/">
+          <a>
+            <img src="/assets/logo.png" alt="Logo" />
+          </a>
+        </Link>
       </div>
     </header>
   );
