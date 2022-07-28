@@ -35,14 +35,14 @@ interface GetStaticPropsResult {
 
 const mockedGetByTypeReturn = {
   results: [
-  {
-    uid: 'como-utilizar-hooks',
-  },
-  {
-    uid: 'criando-um-app-cra-do-zero',
-  },
-  ]
-}
+    {
+      uid: 'como-utilizar-hooks',
+    },
+    {
+      uid: 'criando-um-app-cra-do-zero',
+    },
+  ],
+};
 
 const mockedGetAllByTypeReturn = [
   {
@@ -51,7 +51,7 @@ const mockedGetAllByTypeReturn = [
   {
     uid: 'criando-um-app-cra-do-zero',
   },
-]
+];
 
 const mockedGetByUIDReturn = {
   uid: 'como-utilizar-hooks',
@@ -215,7 +215,7 @@ describe('Post', () => {
       },
       getByType: () => {
         return Promise.resolve(mockedGetByTypeReturn);
-      }
+      },
     });
   });
 
