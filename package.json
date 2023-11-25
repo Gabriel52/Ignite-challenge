@@ -12,21 +12,21 @@
     "slicemachine": "start-slicemachine"
   },
   "engines": {
-    "node": "20.10.0",
-    "npm": "10.2.3"
+    "node": "14.10.0",
+    "npm": "6.14.3"
   },
   "dependencies": {
     "@prismicio/client": "^6.6.1",
     "@prismicio/helpers": "^2.3.1",
-    "@prismicio/next": "^0.1.2",
+    "@prismicio/next": "0.1.2",
     "@prismicio/react": "^2.4.2",
     "@prismicio/slice-simulator-react": "^0.2.2",
-    "@prismicio/types": "^0.1.27",
+    "@prismicio/types": "0.1.27",
     "date-fns": "2.19.0",
-    "next": "^10.0.7",
-    "prismic-dom": "^2.2.5",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "next": "10.0.7",
+    "prismic-dom": "2.2.5",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
     "react-icons": "^4.4.0",
     "uuid": "^8.3.2",
     "whatwg-fetch": "3.6.2"
