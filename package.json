@@ -11,6 +11,10 @@
     "prismic": "npx @slicemachine/init --repository spacetraveling-52",
     "slicemachine": "start-slicemachine"
   },
+  "engines": {
+    "node": "20.10.0",
+    "npm": "10.2.3"
+  },
   "dependencies": {
     "@prismicio/client": "^6.6.1",
     "@prismicio/helpers": "^2.3.1",
